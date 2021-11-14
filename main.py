@@ -38,13 +38,13 @@ async def on_message(message):
             LOST.append([message, Attributes, i.url])
             for j in FOUND:
                 similarity = round(numpy.dot(Attributes,j[1])/(numpy.linalg.norm(Attributes)*numpy.linalg.norm(j[1])),2)
-                if similarity > -1:
+                if similarity > 0.5:
                     await embed(message.author, j[2], j[0].jump_url, j[0].author, similarity)
         elif "found" in message.content.lower():
             FOUND.append([message, Attributes, i.url])
             for j in LOST:
                 similarity = round(numpy.dot(Attributes,j[1])/(numpy.linalg.norm(Attributes)*numpy.linalg.norm(j[1])),2)
-                if similarity > -1:
+                if similarity > 0.5:
                     await embed(j[0].author, i.url, message.jump_url, message.author, similarity)
 
         
